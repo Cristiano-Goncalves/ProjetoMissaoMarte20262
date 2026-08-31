@@ -2,41 +2,42 @@
 
 > **Nome do grupo:** Grupo 01
 >
-> **Link do repositório:** https://github.com/Cristiano-Goncalves/ProjetoMissaoMarte20262
+> **Link do repositório:** <https://github.com/Cristiano-Goncalves/ProjetoMissaoMarte20262>
 
-Projeto em Java (console) desenvolvido para a disciplina Projeto de arquitetura de sistemas, aplicando conceitos de
-Programação Orientada a Objetos: herança, polimorfismo, encapsulamento e abstração.
+Projeto em Java (console) desenvolvido para a disciplina **Projeto de Arquitetura de Sistemas** do curso de ADS na Universidade de Fortaleza (Unifor), aplicando conceitos de Programação Orientada a Objetos: herança, polimorfismo, encapsulamento, abstração e persistência em arquivo JSON.
 
 ---
 
 ## Integrantes
 
-| Nome | Matrícula |
-|---|---|
-| Antônio Cristiano | 2526035 |
-| Iandeyara Farias | 2526388 |
-| Myrla Rodrigues | 2526284 |
+| Nome              | Matrícula | GitHub |
+|-------------------|-----------|--------|
+| Antônio Cristiano | 2526035   | [@Cristiano-Goncalves](https://github.com/Cristiano-Goncalves) |
+| Iandeyara Farias  | 2526388   | [@Iandaa](https://github.com/Iandaa) |
+| Myrla Rodrigues   | 2526284   | [@myyrla](https://github.com/myyrla) |
 
 ---
 
 ## Sobre o projeto
 
-Jogo de console em que a nave se movimenta por um grid, embarcando passageiros
-(professores e engenheiros) e desviando de asteroides e inimigos. Ao final, a
-pontuação é registrada em um ranking.
+Jogo de console em que a nave se movimenta por um grid, embarcando passageiros (professores, engenheiros e astronautas) e desviando de asteroides e inimigos. Ao final, a pontuação é registrada em um ranking Top 5 persistido em disco.
 
-**Objetivo:** embarcar todos os passageiros sem colidir com os obstáculos.
+**Objetivo:** embarcar todos os passageiros e retornar à Plataforma de Pouso `L` em `(0,0)` para concluir a missão, sem que a pontuação zere ou a nave perca todas as vidas.
 
 ### Comandos
 
 | Tecla | Ação |
-|---|---|
-| `w` | Mover para cima |
-| `s` | Mover para baixo |
-| `a` | Mover para a esquerda |
-| `d` | Mover para a direita |
-| `c` | Embarcar (se houver passageiro na mesma posição) |
-| `q` | Sair do jogo |
+|-------|------|
+| `w`   | Mover para cima |
+| `s`   | Mover para baixo |
+| `a`   | Mover para a esquerda |
+| `d`   | Mover para a direita |
+| `c`   | Embarcar (se houver passageiro na mesma posição) |
+| `q`   | Sair do jogo |
+
+### Legenda do mapa
+
+`@` Nave · `L` Plataforma de Pouso · `P` Professor · `E` Engenheiro · `T` Astronauta · `X` Inimigo · `#` Asteroide · `.` Vazio
 
 ---
 
@@ -44,33 +45,34 @@ pontuação é registrada em um ranking.
 
 ```
 ProjetoMissaoMarte20262/
+├── .gitignore
 ├── README.md
 └── MissaoMarte/
-    ├── MissaoMarte.iml            # Módulo do IntelliJ IDEA
-    ├── README.md
+    ├── MissaoMarte.iml
     ├── TUTORIAL-MISSAO-MARTE.md
     └── src/
         └── missao/
-            ├── Main.java            # Ponto de entrada (main)
-            ├── Jogo.java            # Laço principal e leitura dos comandos
-            ├── Missao.java          # Regras e estado da missão
-            ├── Nave.java            # Nave controlada pelo jogador
-            ├── Passageiro.java      # Classe base dos passageiros
-            ├── Astronauta.java      # Especialização de Passageiro
-            ├── Professor.java       # Especialização de Passageiro
-            ├── Engenheiro.java      # Especialização de Passageiro
-            ├── Asteroide.java       # Obstáculo do mapa
-            ├── Inimigo.java         # Obstáculo móvel
-            ├── RankingEntry.java    # Registro de pontuação
-            └── RankingService.java  # Gerenciamento do ranking
+            ├── Main.java
+            ├── Missao.java
+            ├── Nave.java
+            ├── Passageiro.java
+            ├── Professor.java
+            ├── Engenheiro.java
+            ├── Astronauta.java
+            ├── Asteroide.java
+            ├── Inimigo.java
+            ├── Dificuldade.java
+            ├── OpcaoMenu.java
+            └── EstatisticasMissao.java
 ```
 
 ### Conceitos de OO aplicados
 
 - **Herança:** `Astronauta`, `Professor` e `Engenheiro` estendem `Passageiro`.
-- **Polimorfismo:** os diferentes tipos de passageiro são tratados de forma uniforme pela `Missao`.
-- **Encapsulamento:** atributos privados com acesso controlado por métodos.
+- **Polimorfismo:** cada tipo de passageiro sobrescreve `getPontuacao()` retornando um bônus distinto (+10, +15, +20).
+- **Encapsulamento:** atributos privados com acesso controlado por getters; estatísticas isoladas em classe própria.
 - **Abstração:** `Passageiro` define o contrato comum aos tipos concretos.
+- **Enums:** `Dificuldade` e `OpcaoMenu` isolam constantes e comportamentos associados.
 
 ---
 
@@ -96,7 +98,7 @@ java -cp out missao.Main
 
 **Windows (PowerShell / CMD)**
 
-```bat
+```powershell
 javac -d out MissaoMarte\src\missao\*.java
 java -cp out missao.Main
 ```
