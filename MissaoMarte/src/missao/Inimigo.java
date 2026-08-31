@@ -11,58 +11,54 @@ public class Inimigo {
         this.y = y;
     }
 
-    public int getX() { return x; }
-    public int getY() { return y; }
+    public int getX() {
+        return x;
+    }
 
-    public void moverInimigos(
-            Random r,
-            int minX,
-            int maxX,
-            int minY,
-            int maxY
-    ) {
+    public void setX(int x) {
+        this.x = x;
+    }
 
-        boolean moveu = false;
+    public int getY() {
+        return y;
+    }
 
-        while (!moveu) {
-
-            int direcao = r.nextInt(4);
-
-            switch (direcao) {
-
-                case 0:
-                    if (x < maxX) {
-                        x++;
-                        moveu = true;
-                    }
-                    break;
-
-                case 1:
-                    if (x > minX) {
-                        x--;
-                        moveu = true;
-                    }
-                    break;
-
-                case 2:
-                    if (y < maxY) {
-                        y++;
-                        moveu = true;
-                    }
-                    break;
-
-                case 3:
-                    if (y > minY) {
-                        y--;
-                        moveu = true;
-                    }
-                    break;
-            }
-        }
+    public void setY(int y) {
+        this.y = y;
     }
 
     public boolean colideCom(Nave n) {
         return n.getX() == x && n.getY() == y;
     }
 
+    public void mover(Random random,
+            int minX,
+            int maxX,
+            int minY,
+            int maxY) {
+
+        int direcao = random.nextInt(4);
+        switch (direcao) {
+            case 0 -> {
+                if (y > minY) {
+                    y--;
+                }
+            }
+            case 1 -> {
+                if (y < maxY) {
+                    y++;
+                }
+            }
+            case 2 -> {
+                if (x > minX) {
+                    x--;
+                }
+            }
+            case 3 -> {
+                if (x < maxX) {
+                    x++;
+                }
+            }
+        }
+    }
 }

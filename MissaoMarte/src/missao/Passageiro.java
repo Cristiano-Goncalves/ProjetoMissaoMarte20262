@@ -1,11 +1,14 @@
 package missao;
 
+/**
+ * Entidade básica que representa um passageiro no mapa com nome, tipo e
+ * coordenadas (x,y).
+ */
 public class Passageiro {
     private String nome;
     private String tipo;
     private int x;
     private int y;
-    private int pontuacao;
 
     public Passageiro(String nome, String tipo, int x, int y) {
         this.nome = nome;
@@ -14,11 +17,24 @@ public class Passageiro {
         this.y = y;
     }
 
-    public String getNome() { return nome; }
-    public String getTipo() { return tipo; }
-    public int getX() { return x; }
-    public int getY() { return y; }
-    public int getPontuacao() { return 10; }//Exercicio 4 - Add pontuacao
+    public String getNome() {
+        return nome;
+    }
 
+    public String getTipo() {
+        return tipo;
+    }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    // Retorna a pontuação bônus ao embarcar este passageiro
+    public int getPontuacao() {
+        return 10;  // Default: 10 pontos
+    }
 }

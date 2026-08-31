@@ -1,13 +1,16 @@
 package missao;
 
+/**
+ * Passageiro especializado: Professor. Atualmente é uma subclasse leve de
+ * `Passageiro` que apenas define o tipo.
+ */
 public class Professor extends Passageiro {
     public Professor(String nome, int x, int y) {
         super(nome, "Professor", x, y);
     }
 
-    @Override//Exercicio 4 - Add pontuacao
+    @Override
     public int getPontuacao() {
-        return 10;
+        return 10;  // Professor vale 10 pontos
     }
 }
-
